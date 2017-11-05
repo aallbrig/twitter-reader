@@ -30,7 +30,7 @@ class App extends React.Component<Props, {}> {
         <div className="App">
           <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h2>Recent Tweets from @Salesforce</h2>
+            <h1 className="h3">Recent Tweets from @Salesforce</h1>
           </div>
           <Grid>
             <Row>
