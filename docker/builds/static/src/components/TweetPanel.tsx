@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Panel, Media, Row, Col } from 'react-bootstrap';
 import { FormattedNumber, FormattedDate, FormattedTime } from 'react-intl';
 import { FilterableTweet } from '../types';
-const Highlight = require('react-highlighter')
+const Highlight = require('react-highlighter');
 
 export interface Props {
     tweet: FilterableTweet;

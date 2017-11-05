@@ -50,7 +50,11 @@ export interface FilterableTweetState {
     filterBy: string;
     filteredTweets: FilterableTweet[];
 }
+export interface InformationModalState {
+    show: boolean;
+}
 export interface StoreState {
     tweets: TweetState;
     filterTweets: FilterableTweetState;
+    informationModal: InformationModalState;
 }

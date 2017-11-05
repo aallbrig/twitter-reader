@@ -1,5 +1,5 @@
 import App from '../components/App';
-import * as actions from '../actions/';
+import * as actions from '../actions';
 import { StoreState } from '../types/index';
 import { connect, Dispatch } from 'react-redux';
 import { Tweet } from '../types';
@@ -9,19 +9,24 @@ export function mapStateToProps({
     filterBy: highlightedWord, // alias for UI purposes
     filteredTweets: tweets
   },
-  tweets: { tweets: rawTweets }
+  tweets: { tweets: rawTweets },
+  informationModal: { show: showModal }
 }: StoreState) {
     return {
       tweets,
       rawTweets,
-      highlightedWord
+      highlightedWord,
+      showModal
     };
   }
   
-export function mapDispatchToProps(dispatch: Dispatch<actions.TweetAction>) {
+export function mapDispatchToProps(
+  dispatch: Dispatch<actions.TweetAction & actions.InformationModalAction>
+) {
     return {
       getRecentTweets: () => dispatch(actions.getRecentTweets()),
-      filterTweets: (tweets: Tweet[], value: string) => dispatch(actions.filterTweets(tweets, value))
+      filterTweets: (tweets: Tweet[], value: string) => dispatch(actions.filterTweets(tweets, value)),
+      dismissModal: () => dispatch(actions.dismissModal())
     };
   }
 

@@ -5,15 +5,18 @@ import { IntlProvider } from 'react-intl';
 import './App.css';
 import TweetPanel from './TweetPanel';
 import FilterTweetInput from './FilterTweetInput';
+import InformationModal from './InformationModal';
 import { FilterableTweet, Tweet } from '../types';
 
 const logo = require('./logo.png');
 
 export interface Props {
   highlightedWord: string;
+  showModal: boolean;
   rawTweets: Tweet[];
   tweets: FilterableTweet[];
   getRecentTweets: () => void;
+  dismissModal: () => void;
   filterTweets: (tweets: Tweet[], filterBy: string) => void;
 }
 
@@ -24,7 +27,10 @@ class App extends React.Component<Props, {}> {
     setInterval(getRecentTweets, 60 * 1000);
   }
   render() {
-    const {highlightedWord, tweets, rawTweets, filterTweets} = this.props;
+    const {
+      highlightedWord, tweets, rawTweets,
+      filterTweets, showModal, dismissModal
+    } = this.props;
     return (
       <IntlProvider locale="en">
         <div className="App">
@@ -54,6 +60,7 @@ class App extends React.Component<Props, {}> {
               </Col>
             </Row>
           </Grid>
+          <InformationModal showModal={showModal} dismissModal={dismissModal} />
         </div>
       </IntlProvider>
     );

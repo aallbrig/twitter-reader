@@ -15,15 +15,6 @@ const middleware = [
 ];
 const store = createStore<StoreState>(
   rootReducer,
-  {
-    tweets: {
-      tweets: []
-    },
-    filterTweets: {
-      filterBy: '',
-      filteredTweets: []
-    }
-  },
   composeEnhancers(
     applyMiddleware(...middleware)
   )

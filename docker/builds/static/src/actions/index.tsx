@@ -18,9 +18,15 @@ export interface FilterTweets {
     };
 }
 
+export interface DismissModal {
+    type: constants.DISMISS_MODAL;
+}
+
 export type TweetAction = GetRecentTweets & GetRecentTweetsFulfilled;
 
 export type FilterAction = GetRecentTweetsFulfilled & FilterTweets;
+
+export type InformationModalAction = DismissModal;
 
 export function getRecentTweets(): GetRecentTweets {
     return {
@@ -36,5 +42,11 @@ export function filterTweets(tweets: Tweet[], filterBy: string): FilterTweets {
             filter: filterBy,
             tweets
         }
+    };
+}
+
+export function dismissModal() {
+    return {
+        type: constants.DISMISS_MODAL
     };
 }
