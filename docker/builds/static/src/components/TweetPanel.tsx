@@ -88,8 +88,8 @@ export const TweetPanel: React.SFC<Props> = ({ tweet, index, highlightedWord }) 
                         <Badge
                             style={{
                                 backgroundColor: 'initial',
-                                border: '1px solid #333',
-                                color: 'inherit'
+                                border: '1px solid #aaa',
+                                color: '#aaa'
                             }}
                         >
                             {index}
