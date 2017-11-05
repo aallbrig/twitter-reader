@@ -1,11 +1,35 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
+import promiseMiddleware from 'redux-promise-middleware';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { enthusiasm } from './reducers/index';
+import { StoreState } from './types/index';
+import App from './containers/App';
+import { Provider } from 'react-redux';
+
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middleware = [
+  promiseMiddleware()
+];
+const store = createStore<StoreState>(
+  enthusiasm,
+  {
+    enthusiasmLevel: 1,
+    languageName: 'TypeScript',
+    tweets: []
+  },
+  composeEnhancers(
+    applyMiddleware(...middleware)
+  )
+);
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root') as HTMLElement
 );
+
 registerServiceWorker();
