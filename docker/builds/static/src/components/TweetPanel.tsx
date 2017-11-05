@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Panel, Media, Row, Col } from 'react-bootstrap';
+import { Panel, Media, Row, Col, Badge } from 'react-bootstrap';
 import { FormattedNumber, FormattedDate, FormattedTime } from 'react-intl';
 import { FilterableTweet } from '../types';
 const Highlight = require('react-highlighter');
@@ -85,7 +85,15 @@ export const TweetPanel: React.SFC<Props> = ({ tweet, index, highlightedWord }) 
             <Col xs={2} sm={3}>
                 <div className="pull-right text-right">
                     <p>
-                        <span className="badge">{index}</span>
+                        <Badge
+                            style={{
+                                backgroundColor: 'initial',
+                                border: '1px solid #333',
+                                color: 'inherit'
+                            }}
+                        >
+                            {index}
+                        </Badge>
                     </p>
                     <p>
                         {'Favorite'}

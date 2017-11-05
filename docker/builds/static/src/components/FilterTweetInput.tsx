@@ -1,12 +1,34 @@
 import * as React from 'react';
-import { Well, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import {
+    Well,
+    FormGroup,
+    ControlLabel,
+    FormControl,
+    OverlayTrigger,
+    Popover,
+    Badge
+} from 'react-bootstrap';
 
 export interface Props {
     onKeyDown: (value: string) => void;
 }
 
+const filterTweetsTooltip = (
+    <Popover id="filter-input-tooltip">
+        Start typing in words to match text in the tweets.
+        <br />
+        If there is a match then the matched text will be highlighted.
+        All other tweets without matches will be hidden.
+    </Popover>
+);
+
 export const FilterTweetInput: React.SFC<Props> = ({ onKeyDown }) => (
-    <Well bsSize="large">
+    <Well bsSize="large" style={{ position: 'relative' }}>
+        <div style={{ position: 'absolute', top: 10, right: 10 }}>
+            <OverlayTrigger placement="left" overlay={filterTweetsTooltip}>
+                <Badge>?</Badge>
+            </OverlayTrigger>
+        </div>
         <FormGroup>
             <ControlLabel>
                 Tweet Content Filter & Highlight
