@@ -18,12 +18,15 @@ export const TweetPanel: React.SFC<Props> = ({ tweet, index }) => (
         footer={tweet.entities.media.length > 0 && (
             <Row>
                 <Col xs={12}>
-                    <hr />
                     <h4>Attached Media</h4>
                     {tweet.entities.media.map(({ id, url}) => (
                         <Media key={`media-${id}`}>
                             <a href={url} target="_blank">
-                                <img className="thumbnail img-responsive" src={url} />
+                                <img
+                                    className="thumbnail img-responsive"
+                                    src={url}
+                                    style={{maxHeight: 250}}
+                                />
                             </a>
                         </Media>
                     ))}
