@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  react_cli:
+    image: react-cli
+    build: ./builds/react_cli
+
+  static:
+    image: twitter-reader-static
+    build: ./builds/static
+    ports:
+      - 3000:3000
+    volumes:
+      - ./builds/static:/usr/src/app
+    restart: always
+
+  web_server:
+    image: twitter-reader-web-server
+    build: ./builds/web_server
+    ports:
+      - 9000:9000
+    volumes:
+      - ./builds/web_server:/root/app
+    restart: always
+    stdin_open: true
+    environment:
+      - "TWITTER_CONSUMER_TOKEN_KEY=${TWITTER_CONSUMER_TOKEN_KEY}"
+      - "TWITTER_CONSUMER_TOKEN_SECRET=${TWITTER_CONSUMER_TOKEN_SECRET}"
+      - "TWITTER_ACCESS_TOKEN_KEY=${TWITTER_ACCESS_TOKEN_KEY}"
+      - "TWITTER_ACCESS_TOKEN_SECRET=${TWITTER_ACCESS_TOKEN_SECRET}"
+
+  nginx:
+    image: twitter-reader-nginx
+    build: ./builds/nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./builds/nginx:/root/app
+    links:
+      - web_server:web_server
+      - static:static
+    restart: always
+
+  api_testing:
+    image: j-meter
+    build: ./builds/api_testing
+
