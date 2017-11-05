@@ -2,20 +2,22 @@ import App from '../components/App';
 import * as actions from '../actions/';
 import { StoreState } from '../types/index';
 import { connect, Dispatch } from 'react-redux';
+import { Tweet } from '../types';
 
-export function mapStateToProps({ enthusiasmLevel, languageName, tweets }: StoreState) {
+export function mapStateToProps({
+  filterTweets: { filteredTweets: tweets },
+  tweets: { tweets: rawTweets }
+}: StoreState) {
     return {
-      enthusiasmLevel,
-      name: languageName,
-      tweets
+      tweets,
+      rawTweets
     };
   }
   
-export function mapDispatchToProps(dispatch: Dispatch<actions.EnthusiasmAction>) {
+export function mapDispatchToProps(dispatch: Dispatch<actions.TweetAction>) {
     return {
-      onIncrement: () => dispatch(actions.incrementEnthusiasm()),
-      onDecrement: () => dispatch(actions.decrementEnthusiasm()),
       getRecentTweets: () => dispatch(actions.getRecentTweets()),
+      filterTweets: (tweets: Tweet[], value: string) => dispatch(actions.filterTweets(tweets, value))
     };
   }
 

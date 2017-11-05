@@ -1,25 +1,49 @@
-// src/reducers/index.tsx
+import { curry } from 'lodash';
+import { combineReducers } from 'redux';
+import { TweetAction, FilterAction } from '../actions';
+import { Tweet, FilterableTweet } from '../types';
+import { StoreState, TweetState, FilterableTweetState } from '../types/index';
+import { GET_RECENT_TWEETS_FULFILLED, FILTER_TWEETS_INPUT } from '../constants/index';
 
-import { EnthusiasmAction } from '../actions';
-import { StoreState } from '../types/index';
-import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM, GET_RECENT_TWEETS_FULFILLED } from '../constants/index';
-
-export function enthusiasm(state: StoreState, action: EnthusiasmAction): StoreState {
+export const tweetsInitialState = { tweets: [] };
+export function tweets(state: TweetState = tweetsInitialState, action: TweetAction): TweetState {
   switch (action.type) {
-    case INCREMENT_ENTHUSIASM:
-      return { ...state, enthusiasmLevel: state.enthusiasmLevel + 1 };
-    case DECREMENT_ENTHUSIASM:
-      return { ...state, enthusiasmLevel: Math.max(1, state.enthusiasmLevel - 1) };
     case GET_RECENT_TWEETS_FULFILLED:
-      (console).log('fulfilled!');
-      (console).log('action', action);
-      // const res: Response = ((action as any).payload as any);
-      // (console).log('res', res);
-      // (console).log('body', res.json().then(console.log));
-      // const tweets = res.tweets;
-      // (console).log('tweets!', tweets);
-      return {...state, tweets: (action as any).payload.tweets};
+      return {...state, tweets: action.payload.tweets};
     default:
   }
   return state;
 }
+
+function determineTweetState(filterBy: string, tweet: Tweet): FilterableTweet {
+  return {
+    ...tweet,
+    disabled: filterBy !== '' && !(
+      tweet.text.includes(filterBy)
+      || tweet.entities.hashtags.filter(({tag}) => tag.includes(filterBy)).length > 0
+      || tweet.id.toString().includes(filterBy)
+    )
+  };
+}
+export const filterTweetsInitialState = {
+  filterBy: '',
+  filteredTweets: []
+};
+export function filterTweets(state: FilterableTweetState = filterTweetsInitialState, action: FilterAction) {
+  switch (action.type) {
+    case GET_RECENT_TWEETS_FULFILLED:
+      const {filterBy: filter} = state;
+      return {...state, filteredTweets: action.payload.tweets.map(curry(determineTweetState)(filter))};
+    case FILTER_TWEETS_INPUT:
+      const filterBy = action.payload.filter;
+      const filteredTweets = action.payload.tweets.map(curry(determineTweetState)(action.payload.filter));
+      return {...state, ...{filterBy, filteredTweets}};
+    default:
+  }
+  return state;
+}
+
+export default combineReducers<StoreState>({
+  tweets,
+  filterTweets
+});

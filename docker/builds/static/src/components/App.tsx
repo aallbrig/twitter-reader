@@ -1,45 +1,42 @@
 import * as React from 'react';
+import { curry } from 'lodash';
 import { Grid, Row, Col } from 'react-bootstrap';
 import './App.css';
 import TweetPanel from './TweetPanel';
 import FilterTweetInput from './FilterTweetInput';
-import { Tweet } from '../types';
+import { FilterableTweet, Tweet } from '../types';
 
 const logo = require('./logo.png');
 
 export interface Props {
-    dispatch: (action: {}) => void;
-    name: string;
-    tweets: Tweet[];
-    enthusiasmLevel?: number;
-    onIncrement?: () => void;
-    onDecrement?: () => void;
-    getRecentTweets?: () => void;
-  }
+  rawTweets: Tweet[];
+  tweets: FilterableTweet[];
+  getRecentTweets: () => void;
+  filterTweets: (tweets: Tweet[], filterBy: string) => void;
+}
 
 class App extends React.Component<Props, {}> {
   componentWillMount() {
     const {getRecentTweets} = this.props;
-    const foo = getRecentTweets && getRecentTweets();
-    (console).log('getRecentTweets', getRecentTweets);
-    (console).log('foo', foo);
+    getRecentTweets();
+    setInterval(getRecentTweets, 60 * 1000);
   }
   render() {
-    const {tweets} = this.props;
+    const {tweets, rawTweets, filterTweets} = this.props;
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Twitter Reader for Target Twitter Account</h2>
+          <h2>Recent Tweets from @Salesforce</h2>
         </div>
         <Grid>
           <Row>
             <Col xs={12}>
-              <FilterTweetInput />
+              <FilterTweetInput onKeyDown={curry(filterTweets)(rawTweets)}/>
             </Col>
           </Row>
           <Row>
-            <Col xs={12} md={10}>
+            <Col xs={12}>
               {tweets.map(tweet =>
                 <TweetPanel key={`tweet-${tweet.id}`} tweet={tweet}/>)}
             </Col>

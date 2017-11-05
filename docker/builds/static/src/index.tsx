@@ -4,7 +4,7 @@ import promiseMiddleware from 'redux-promise-middleware';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import { createStore, applyMiddleware, compose } from 'redux';
-import { enthusiasm } from './reducers/index';
+import rootReducer from './reducers/index';
 import { StoreState } from './types/index';
 import App from './containers/App';
 import { Provider } from 'react-redux';
@@ -14,11 +14,15 @@ const middleware = [
   promiseMiddleware()
 ];
 const store = createStore<StoreState>(
-  enthusiasm,
+  rootReducer,
   {
-    enthusiasmLevel: 1,
-    languageName: 'TypeScript',
-    tweets: []
+    tweets: {
+      tweets: []
+    },
+    filterTweets: {
+      filterBy: '',
+      filteredTweets: []
+    }
   },
   composeEnhancers(
     applyMiddleware(...middleware)

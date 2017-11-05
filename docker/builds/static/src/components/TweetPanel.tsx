@@ -1,13 +1,18 @@
 import * as React from 'react';
 import { Panel, Media } from 'react-bootstrap';
-import { Tweet } from '../types';
+import { FilterableTweet } from '../types';
 
 export interface Props {
-    tweet: Tweet;
+    tweet: FilterableTweet;
 }
 
 export const TweetPanel: React.SFC<Props> = ({ tweet }) => (
-    <Panel>
+    <Panel
+        {...(tweet.disabled ? {
+            bsStyle: 'danger',
+            className: 'text-muted'
+        } : {})}
+    >
         <h4>Tweet ID: {tweet.id}</h4>
         {tweet.text}
         {tweet.entities.hashtags.length > 0 && (
@@ -19,9 +24,11 @@ export const TweetPanel: React.SFC<Props> = ({ tweet }) => (
         {tweet.entities.media.length > 0 && (
             <div>
                 <hr />
-                {tweet.entities.media.map(media => (
-                    <Media key={`media-${media.id}`}>
-                        <img src={media.url} />
+                {tweet.entities.media.map(({ id, url}) => (
+                    <Media key={`media-${id}`}>
+                        <a href={url} target="_blank">
+                            <img src={url} />
+                        </a>
                     </Media>
                 ))}
             </div>

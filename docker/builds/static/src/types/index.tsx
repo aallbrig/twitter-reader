@@ -10,12 +10,26 @@ export type Entity = {
     media: Media[]
 };
 export type Tweet = {
-    id: string,
+    id: number,
     text: string,
     entities: Entity
 };
-export interface StoreState {
+export type FilterableTweet = Tweet & {
+    disabled: boolean
+};
+export type GetRecentTweetsResponse = {
+    status: 'OK',
+    tweets: Tweet[]
+};
+
+export interface TweetState {
     tweets: Tweet[];
-    languageName: string;
-    enthusiasmLevel: number;
+}
+export interface FilterableTweetState {
+    filterBy: string;
+    filteredTweets: FilterableTweet[];
+}
+export interface StoreState {
+    tweets: TweetState;
+    filterTweets: FilterableTweetState;
 }
