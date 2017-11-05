@@ -6,19 +6,20 @@ import { FilterableTweet } from '../types';
 export interface Props {
     tweet: FilterableTweet;
     index: number;
+    highlightedWord: string;
 }
 
 export const TweetPanel: React.SFC<Props> = ({ tweet, index }) => (
     <Panel
         {...(tweet.disabled ? {
             bsStyle: 'danger',
-            className: 'text-muted'
+            // className: 'text-muted'
         } : {})}
         footer={tweet.entities.media.length > 0 && (
             <Row>
                 <Col xs={12}>
                     <hr />
-                    <h4> Attached Media </h4>
+                    <h4>Attached Media</h4>
                     {tweet.entities.media.map(({ id, url}) => (
                         <Media key={`media-${id}`}>
                             <a href={url} target="_blank">

@@ -5,10 +5,12 @@
   "dependencies": {
     "@types/react-redux": "^5.0.12",
     "lodash": "^4.17.4",
+    "mark.js": "^8.11.0",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.0.0",
     "react-highlight-words": "^0.10.0",
+    "react-highlighter": "^0.4.2",
     "react-redux": "^5.0.6",
     "react-scripts-ts": "2.8.0",
     "redux": "^3.7.2",
@@ -28,6 +30,7 @@
     "@types/react-bootstrap": "^0.31.6",
     "@types/react-dom": "^16.0.2",
     "@types/react-highlight-words": "^0.6.3",
+    "@types/react-highlighter": "^0.3.2",
     "@types/react-intl": "^2.3.2",
     "@types/redux-promise-middleware": "0.0.9",
     "react-intl": "^2.4.0"

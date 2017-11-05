@@ -78,7 +78,7 @@ class TweetController @Inject()(cached: Cached, cc: ControllerComponents) extend
 
   def getRecentTweets() = cached(
     (_: RequestHeader) =>  targetTwitterUser + ".tweets",
-    1.minutes
+    58.seconds
   ) {
     Action.async {
       println("Starting extraction of tweets from API!")

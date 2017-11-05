@@ -10,6 +10,7 @@ import { FilterableTweet, Tweet } from '../types';
 const logo = require('./logo.png');
 
 export interface Props {
+  highlightedWord: string;
   rawTweets: Tweet[];
   tweets: FilterableTweet[];
   getRecentTweets: () => void;
@@ -23,7 +24,7 @@ class App extends React.Component<Props, {}> {
     setInterval(getRecentTweets, 60 * 1000);
   }
   render() {
-    const {tweets, rawTweets, filterTweets} = this.props;
+    const {highlightedWord, tweets, rawTweets, filterTweets} = this.props;
     return (
       <IntlProvider locale="en">
         <div className="App">
@@ -44,7 +45,8 @@ class App extends React.Component<Props, {}> {
                     key={`tweet-${tweet.id}`}
                     {...{
                       tweet,
-                      index: index + 1
+                      index: index + 1,
+                      highlightedWord
                     }}
                   />)}
               </Col>

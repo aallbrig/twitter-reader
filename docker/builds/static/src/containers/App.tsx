@@ -5,12 +5,16 @@ import { connect, Dispatch } from 'react-redux';
 import { Tweet } from '../types';
 
 export function mapStateToProps({
-  filterTweets: { filteredTweets: tweets },
+  filterTweets: {
+    filterBy: highlightedWord, // alias for UI purposes
+    filteredTweets: tweets
+  },
   tweets: { tweets: rawTweets }
 }: StoreState) {
     return {
       tweets,
-      rawTweets
+      rawTweets,
+      highlightedWord
     };
   }
   
