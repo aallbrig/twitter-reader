@@ -13,9 +13,9 @@ export interface Props {
 export const TweetPanel: React.SFC<Props> = ({ tweet, index, highlightedWord }) => (
     <Panel
         {...(tweet.disabled ? {
-            bsStyle: 'danger',
-            // className: 'text-muted'
+            bsStyle: 'danger'
         } : {})}
+        style={{ fontSize: '0.85em' }}
         footer={tweet.entities.media.length > 0 && (
             <Row>
                 <Col xs={12}>
