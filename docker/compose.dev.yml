@@ -33,7 +33,7 @@ services:
     image: twitter-reader-nginx
     build: ./builds/nginx
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       - ./builds/nginx:/root/app
     links:
