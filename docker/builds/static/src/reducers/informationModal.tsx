@@ -5,7 +5,7 @@ import { DISMISS_MODAL } from '../constants/index';
 const INFORMATION_MODAL_C_NAME = 'informationModal';
 function createCookie(name: string, value: string) {
   const date = new Date();
-  date.setTime(date.getTime() + (30 * 1000));
+  date.setTime(date.getTime() + (5 * 60 * 1000));
   const expires = `; expires=${date.toUTCString()}`;
   document.cookie = `${name}=${value}${expires}; path=/`;
 }
