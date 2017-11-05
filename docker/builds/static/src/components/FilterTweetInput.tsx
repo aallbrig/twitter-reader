@@ -9,7 +9,7 @@ export const FilterTweetInput: React.SFC<Props> = ({ onKeyDown }) => (
     <Well bsSize="large">
         <FormGroup>
             <ControlLabel>
-                Text in Tweet Highlight
+                Tweet Content Filter & Highlight
             </ControlLabel>
             <FormControl
                 type="text"
