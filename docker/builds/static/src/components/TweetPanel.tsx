@@ -23,7 +23,7 @@ export const TweetPanel: React.SFC<Props> = ({ tweet, index }) => (
                     {tweet.entities.media.map(({ id, url}) => (
                         <Media key={`media-${id}`}>
                             <a href={url} target="_blank">
-                                <img className="thumbnail" src={url} />
+                                <img className="thumbnail img-responsive" src={url} />
                             </a>
                         </Media>
                     ))}
@@ -43,7 +43,7 @@ export const TweetPanel: React.SFC<Props> = ({ tweet, index }) => (
                 <FormattedNumber value={tweet.user.friends_count} />
                 <br />
             </Col>
-            <Col xs={6}>
+            <Col xs={6} style={{ wordWrap: 'break-word' }}>
                 <h4>Tweet ID: {tweet.id}</h4>
                 {tweet.text}
                 {tweet.entities.hashtags.length > 0 && (
