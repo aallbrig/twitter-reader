@@ -6,11 +6,12 @@ import play.api.libs.json._
 import play.api.mvc._
 import play.api.cache.Cached
 import javax.inject.Inject
+
 import scala.concurrent._
 import scala.concurrent.duration._
 import ExecutionContext.Implicits.global
 import com.danielasfregola.twitter4s.TwitterRestClient
-import com.danielasfregola.twitter4s.entities.{Tweet, Entities, HashTag, Media}
+import com.danielasfregola.twitter4s.entities._
 
 @Singleton
 class TweetController @Inject()(cached: Cached, cc: ControllerComponents) extends AbstractController(cc) {
@@ -38,11 +39,40 @@ class TweetController @Inject()(cached: Cached, cc: ControllerComponents) extend
     )
   }
 
+  implicit val coordinateWrites = new Writes[Coordinates] {
+    def writes(coords:Coordinates) = Json.obj(
+      "coordinates" -> coords.coordinates
+    )
+  }
+
+  implicit val profileImage = new Writes[ProfileImage] {
+    def writes(proImg:ProfileImage) = Json.obj(
+      "mini" -> proImg.mini,
+      "normal" -> proImg.normal,
+      "bigger" -> proImg.bigger,
+      "default" -> proImg.default
+    )
+  }
+
+  implicit val twitterUserWrites = new Writes[User] {
+    def writes(usr:User) = Json.obj(
+      "id" -> usr.id,
+      "email" -> usr.email,
+      "entities" -> usr.entities,
+      "friends_count" -> usr.friends_count,
+      "profile" -> usr.profile_image_url
+    )
+  }
+
   implicit val tweetWrites = new Writes[Tweet] {
     def writes(tweet: Tweet) = Json.obj(
       "id" -> tweet.id,
+      "user" -> tweet.user,
       "text" -> tweet.text,
-      "entities" -> tweet.entities
+      "entities" -> tweet.entities,
+      "favorite_count" -> tweet.favorite_count,
+      "retweet_count" -> tweet.retweet_count,
+      "coordinates" -> tweet.coordinates
     )
   }
 

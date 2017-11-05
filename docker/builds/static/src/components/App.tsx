@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { curry } from 'lodash';
 import { Grid, Row, Col } from 'react-bootstrap';
+import { IntlProvider } from 'react-intl';
 import './App.css';
 import TweetPanel from './TweetPanel';
 import FilterTweetInput from './FilterTweetInput';
@@ -24,25 +25,33 @@ class App extends React.Component<Props, {}> {
   render() {
     const {tweets, rawTweets, filterTweets} = this.props;
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Recent Tweets from @Salesforce</h2>
+      <IntlProvider locale="en">
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>Recent Tweets from @Salesforce</h2>
+          </div>
+          <Grid>
+            <Row>
+              <Col xs={12}>
+                <FilterTweetInput onKeyDown={curry(filterTweets)(rawTweets)}/>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                {tweets.map((tweet, index) =>
+                  <TweetPanel
+                    key={`tweet-${tweet.id}`}
+                    {...{
+                      tweet,
+                      index: index + 1
+                    }}
+                  />)}
+              </Col>
+            </Row>
+          </Grid>
         </div>
-        <Grid>
-          <Row>
-            <Col xs={12}>
-              <FilterTweetInput onKeyDown={curry(filterTweets)(rawTweets)}/>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              {tweets.map(tweet =>
-                <TweetPanel key={`tweet-${tweet.id}`} tweet={tweet}/>)}
-            </Col>
-          </Row>
-        </Grid>
-      </div>
+      </IntlProvider>
     );
   }
 }

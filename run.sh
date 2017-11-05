@@ -1,2 +1,2 @@
 COMPOSE_FILE=docker/compose.dev.yml \
-docker-compose up
+docker-compose up -d

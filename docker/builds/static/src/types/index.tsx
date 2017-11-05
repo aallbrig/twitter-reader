@@ -5,14 +5,34 @@ export type Media = {
 export type Hashtag = {
     tag: string
 };
-export type Entity = {
-    hashtags: Hashtag[],
+export type Entities = {
+    hashtags: Array<Hashtag>,
     media: Media[]
+};
+export type ProfileImage = {
+    mini: string,
+    normal: string,
+    bigger: string,
+    default: string
+};
+export type User = {
+    id: number,
+    email: string,
+    entities: Entities,
+    friends_count: number,
+    profile: ProfileImage
+};
+export type Coordinate = {
+    coordinates: number[] | null
 };
 export type Tweet = {
     id: number,
+    user: User,
     text: string,
-    entities: Entity
+    entities: Entities,
+    favorite_count: number,
+    retweet_count: number,
+    coordinates: Coordinate[]
 };
 export type FilterableTweet = Tweet & {
     disabled: boolean
