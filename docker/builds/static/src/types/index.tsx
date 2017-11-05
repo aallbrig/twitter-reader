@@ -17,8 +17,8 @@ export type ProfileImage = {
 };
 export type User = {
     id: number,
-    email: string,
-    entities: Entities,
+    name: string,
+    screen_name: string,
     friends_count: number,
     profile: ProfileImage
 };
@@ -28,6 +28,7 @@ export type Coordinate = {
 export type Tweet = {
     id: number,
     user: User,
+    created_at: string,
     text: string,
     entities: Entities,
     favorite_count: number,

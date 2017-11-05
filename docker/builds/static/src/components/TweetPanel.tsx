@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Panel, Media, Row, Col } from 'react-bootstrap';
-import { FormattedNumber } from 'react-intl';
+import { FormattedNumber, FormattedDate, FormattedTime } from 'react-intl';
 import { FilterableTweet } from '../types';
+const Highlight = require('react-highlighter')
 
 export interface Props {
     tweet: FilterableTweet;
@@ -9,7 +10,7 @@ export interface Props {
     highlightedWord: string;
 }
 
-export const TweetPanel: React.SFC<Props> = ({ tweet, index }) => (
+export const TweetPanel: React.SFC<Props> = ({ tweet, index, highlightedWord }) => (
     <Panel
         {...(tweet.disabled ? {
             bsStyle: 'danger',
@@ -40,15 +41,36 @@ export const TweetPanel: React.SFC<Props> = ({ tweet, index }) => (
                     src={tweet.user.profile.default}
                     className="img-responsive thumbnail"
                 />
-                {'Friend count:'}
+                {tweet.user.name}
+                <br />
+                {`@${tweet.user.screen_name}`}
+                <br />
+                <br />
+                {'Friends:'}
                 <br className="visible-xs"/>
                 {` `}
                 <FormattedNumber value={tweet.user.friends_count} />
-                <br />
             </Col>
-            <Col xs={6} style={{ wordWrap: 'break-word' }}>
+            <Col xs={7} style={{ wordWrap: 'break-word' }}>
                 <h4>Tweet ID: {tweet.id}</h4>
-                {tweet.text}
+                <div className="text-muted" style={{ marginBottom: 10 }}>
+                    <FormattedTime value={tweet.created_at} />
+                    {' '}
+                    <FormattedDate
+                        value={tweet.created_at}
+                        year="numeric"
+                        month="long"
+                        day="2-digit"
+                    />
+                </div>
+                <Highlight
+                    search={highlightedWord}
+                    matchElement="span"
+                    matchClass="bg-danger"
+                    matchStyle={{ border: '1px solid red' }}
+                >
+                    {tweet.text}
+                </Highlight>
                 {tweet.entities.hashtags.length > 0 && (
                     <div>
                         <hr />
@@ -60,7 +82,7 @@ export const TweetPanel: React.SFC<Props> = ({ tweet, index }) => (
                     </div>
                 )}
             </Col>
-            <Col xs={3} sm={4}>
+            <Col xs={2} sm={3}>
                 <div className="pull-right text-right">
                     <p>
                         <span className="badge">{index}</span>

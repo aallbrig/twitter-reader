@@ -30,7 +30,7 @@ class App extends React.Component<Props, {}> {
         <div className="App">
           <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="h3">Recent Tweets from @Salesforce</h1>
+            <h1 className="h4" style={{marginTop: 16}}>Recent Tweets from @Salesforce</h1>
           </div>
           <Grid>
             <Row>
@@ -40,15 +40,17 @@ class App extends React.Component<Props, {}> {
             </Row>
             <Row>
               <Col xs={12}>
-                {tweets.map((tweet, index) =>
-                  <TweetPanel
-                    key={`tweet-${tweet.id}`}
-                    {...{
-                      tweet,
-                      index: index + 1,
-                      highlightedWord
-                    }}
-                  />)}
+                {tweets
+                  .filter(({ disabled }) => !disabled)
+                  .map((tweet, index) =>
+                    <TweetPanel
+                      key={`tweet-${tweet.id}`}
+                      {...{
+                        tweet,
+                        index: index + 1,  // Human readable
+                        highlightedWord
+                      }}
+                    />)}
               </Col>
             </Row>
           </Grid>

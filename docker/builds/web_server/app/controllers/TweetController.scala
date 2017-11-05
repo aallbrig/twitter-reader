@@ -57,8 +57,8 @@ class TweetController @Inject()(cached: Cached, cc: ControllerComponents) extend
   implicit val twitterUserWrites = new Writes[User] {
     def writes(usr:User) = Json.obj(
       "id" -> usr.id,
-      "email" -> usr.email,
-      "entities" -> usr.entities,
+      "name" -> usr.name,
+      "screen_name" -> usr.screen_name,
       "friends_count" -> usr.friends_count,
       "profile" -> usr.profile_image_url
     )
@@ -69,6 +69,7 @@ class TweetController @Inject()(cached: Cached, cc: ControllerComponents) extend
       "id" -> tweet.id,
       "user" -> tweet.user,
       "text" -> tweet.text,
+      "created_at" -> tweet.created_at,
       "entities" -> tweet.entities,
       "favorite_count" -> tweet.favorite_count,
       "retweet_count" -> tweet.retweet_count,
