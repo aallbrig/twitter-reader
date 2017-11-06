@@ -33,7 +33,7 @@ export type Tweet = {
     entities: Entities,
     favorite_count: number,
     retweet_count: number,
-    coordinates: Coordinate[]
+    coordinates: Coordinate[] | null
 };
 export type FilterableTweet = Tweet & {
     disabled: boolean

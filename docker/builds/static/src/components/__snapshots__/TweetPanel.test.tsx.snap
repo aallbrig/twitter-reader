@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TweetPanel renders correctly 1`] = `
+<div
+  className="panel panel-default"
+  id={undefined}
+  style={
+    Object {
+      "fontSize": "0.85em",
+    }
+  }
+>
+  <div
+    className="panel-body"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-2 col-xs-3"
+      >
+        <a
+          href="http://pbs.twimg.com/profile_images/716283264881700865/voT_NePC.jpg"
+          target="_blank"
+        >
+          <img
+            className="img-responsive thumbnail"
+            src="http://pbs.twimg.com/profile_images/716283264881700865/voT_NePC.jpg"
+          />
+        </a>
+        Salesforce
+        <br />
+        @salesforce
+        <br />
+        <br />
+        Friends:
+        <br
+          className="visible-xs"
+        />
+         
+        <span>
+          50,032
+        </span>
+      </div>
+      <div
+        className="col-xs-7"
+        style={
+          Object {
+            "wordWrap": "break-word",
+          }
+        }
+      >
+        <h4>
+          Tweet ID 
+          <span
+            className="text-info"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+          >
+            927,523,478,357,663,700
+          </span>
+        </h4>
+        <div
+          className="text-muted"
+          style={
+            Object {
+              "marginBottom": 10,
+            }
+          }
+        >
+          <span>
+            Invalid Date
+          </span>
+           
+          <span>
+            Invalid Date
+          </span>
+        </div>
+        <span>
+          If coding makes you feel😱, you'll😊 this. NEW myEnstein lets you build AI-powered apps with just a few mouse clicks.… https://t.co/FdOPeF5G0j
+        </span>
+      </div>
+      <div
+        className="col-sm-3 col-xs-2"
+      >
+        <div
+          className="pull-right text-right"
+        >
+          <p>
+            <span
+              className="badge"
+              style={
+                Object {
+                  "backgroundColor": "initial",
+                  "border": "1px solid #aaa",
+                  "color": "#aaa",
+                }
+              }
+            >
+              0
+            </span>
+          </p>
+          <p>
+            Favorite
+            <span
+              className="hidden-xs"
+            >
+               count:
+            </span>
+            <br
+              className="visible-xs"
+            />
+             
+            <i
+              className="glyphicon glyphicon-heart"
+            />
+             5
+          </p>
+          <p>
+            Retweet
+            <span
+              className="hidden-xs"
+            >
+               count:
+            </span>
+            <br
+              className="visible-xs"
+            />
+             
+            <i
+              className="glyphicon glyphicon-sunglasses"
+            />
+             4
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
