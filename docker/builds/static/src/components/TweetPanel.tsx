@@ -64,10 +64,12 @@ export const TweetPanel: React.SFC<Props> = ({ tweet, index, highlightedWord }) 
     >
         <Row>
             <Col xs={3} sm={2}>
-                <img
-                    src={tweet.user.profile.default}
-                    className="img-responsive thumbnail"
-                />
+                <a href={tweet.user.profile.default} target="_blank">
+                    <img
+                        src={tweet.user.profile.default}
+                        className="img-responsive thumbnail"
+                    />
+                </a>
                 {tweet.user.name}
                 <br />
                 {`@${tweet.user.screen_name}`}

@@ -61,7 +61,7 @@ class App extends React.Component<Props, State> {
               placement="right"
               overlay={(
                 <Popover id="logo-tooltip">
-                  Every time this shakes, a new request is sent.
+                  Every time this shakes, a new "get recent tweets from target user" request is sent.
                 </Popover>
               )}
               trigger={['click', 'hover', 'focus']}
@@ -69,12 +69,45 @@ class App extends React.Component<Props, State> {
             >
               <img src={logo} className={`App-logo${shake ? ' shake-chunk shake-freeze' : ''}`} alt="logo" />
             </OverlayTrigger>
-            <h1 className="h4" style={{marginTop: 16}}>Recent Tweets from @Salesforce</h1>
+            <h1 className="h4" style={{marginTop: 22}}>Recent Tweets from @Salesforce</h1>
           </div>
           <Grid>
             <Row>
               <Col xs={12}>
                 <FilterTweetInput onKeyDown={curry(filterTweets)(rawTweets)}/>
+                <OverlayTrigger
+                  placement="right"
+                  overlay={(
+                    <Popover id="logo-tooltip">
+                      {`The backing REST server's HTTP cache clears after approximately `}
+                      {'one minute.  Cache is used to reduce server draw on external Twitter'}
+                      {' API, no matter how many clients are being served.'}
+                    </Popover>
+                  )}
+                  trigger={['click', 'hover', 'focus']}
+                  delayHide={2000}
+                >
+                  <span>
+                    <i className="glyphicon glyphicon-repeat Cache-Reset" />
+                    {' Time until REST server cache clears.'}
+                  </span>
+                </OverlayTrigger>
+                <br />
+                <OverlayTrigger
+                  placement="right"
+                  overlay={(
+                    <Popover id="logo-tooltip">
+                      {'Intended to be used for comparisons between timers.'}
+                    </Popover>
+                  )}
+                  trigger={['click', 'hover', 'focus']}
+                  delayHide={2000}
+                >
+                  <span>
+                    <i className="glyphicon glyphicon-repeat Second-Interval" />
+                    {' One second timer'}
+                  </span>
+                </OverlayTrigger>
               </Col>
             </Row>
             <Row>

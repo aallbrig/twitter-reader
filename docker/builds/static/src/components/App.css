@@ -3,6 +3,14 @@
   height: 80px;
 }
 
+.Cache-Reset {
+  animation: App-logo-spin infinite 59s linear;
+}
+
+.Second-Interval {
+  animation: App-logo-spin infinite 1s linear;
+}
+
 .App-header {
   text-align: center;
   background-color: #222;
