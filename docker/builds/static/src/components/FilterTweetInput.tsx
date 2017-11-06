@@ -25,7 +25,11 @@ const filterTweetsTooltip = (
 export const FilterTweetInput: React.SFC<Props> = ({ onKeyDown }) => (
     <Well bsSize="large" style={{ position: 'relative' }}>
         <div style={{ position: 'absolute', top: 10, right: 10 }}>
-            <OverlayTrigger placement="left" overlay={filterTweetsTooltip}>
+            <OverlayTrigger
+                placement="left"
+                overlay={filterTweetsTooltip}
+                trigger={['click', 'hover', 'focus']}
+            >
                 <Badge>?</Badge>
             </OverlayTrigger>
         </div>
