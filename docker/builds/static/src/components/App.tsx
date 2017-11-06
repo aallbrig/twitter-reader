@@ -94,7 +94,7 @@ class App extends React.Component<Props, State> {
                 </OverlayTrigger>
                 <br />
                 <OverlayTrigger
-                  placement="right"
+                  placement="bottom"
                   overlay={(
                     <Popover id="logo-tooltip">
                       {'For comparison.'}
