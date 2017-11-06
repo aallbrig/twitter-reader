@@ -15,3 +15,4 @@ libraryDependencies ++= Seq(
 )
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
 libraryDependencies += "com.danielasfregola" %% "twitter4s" % "5.2"
+libraryDependencies += "org.mockito" % "mockito-core" % "1.8.5" % "test"
