@@ -92,22 +92,6 @@ class App extends React.Component<Props, State> {
                     {' Time until REST server cache clears.'}
                   </span>
                 </OverlayTrigger>
-                <br />
-                <OverlayTrigger
-                  placement="bottom"
-                  overlay={(
-                    <Popover id="logo-tooltip">
-                      {'For comparison.'}
-                    </Popover>
-                  )}
-                  trigger={['click', 'hover', 'focus']}
-                  delayHide={2000}
-                >
-                  <span>
-                    <i className="glyphicon glyphicon-repeat Second-Interval" />
-                    {' One second timer'}
-                  </span>
-                </OverlayTrigger>
               </Col>
             </Row>
             <Row>

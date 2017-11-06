@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders correctly 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="App-header"
+  >
+    <img
+      alt="logo"
+      className="App-logo shake-chunk shake-freeze"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      src="logo.png"
+    />
+    <h1
+      className="h4"
+      style={
+        Object {
+          "marginTop": 22,
+        }
+      }
+    >
+      Recent Tweets from @Salesforce
+    </h1>
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-12"
+      >
+        <div
+          className="well well-lg"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "position": "absolute",
+                "right": 10,
+                "top": 10,
+              }
+            }
+          >
+            <span
+              className="badge"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              ?
+            </span>
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              className="control-label"
+              htmlFor={undefined}
+            >
+              Tweet Content Filter & Highlight
+            </label>
+            <input
+              className="form-control"
+              id={undefined}
+              onChange={[Function]}
+              placeholder="Highlight text in tweet content"
+              type="text"
+            />
+          </div>
+        </div>
+        <span
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <i
+            className="glyphicon glyphicon-repeat Cache-Reset"
+          />
+           Time until REST server cache clears.
+        </span>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-12"
+      />
+    </div>
+  </div>
+</div>
+`;

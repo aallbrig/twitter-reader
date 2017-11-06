@@ -33,8 +33,10 @@
     "@types/react-highlight-words": "^0.6.3",
     "@types/react-highlighter": "^0.3.2",
     "@types/react-intl": "^2.3.2",
+    "@types/react-test-renderer": "^16.0.0",
     "@types/redux-promise-middleware": "0.0.9",
     "jest-cli": "^21.2.1",
-    "react-intl": "^2.4.0"
+    "react-intl": "^2.4.0",
+    "react-test-renderer": "^16.0.0"
   }
 }
