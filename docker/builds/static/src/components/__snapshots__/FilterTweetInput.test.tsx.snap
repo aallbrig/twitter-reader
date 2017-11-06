@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterTweetInput renders correctly 1`] = `
+<div
+  className="well well-lg"
+  style={
+    Object {
+      "position": "relative",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "position": "absolute",
+        "right": 10,
+        "top": 10,
+      }
+    }
+  >
+    <span
+      className="badge"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      ?
+    </span>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      className="control-label"
+      htmlFor={undefined}
+    >
+      Tweet Content Filter & Highlight
+    </label>
+    <input
+      className="form-control"
+      id={undefined}
+      onChange={[Function]}
+      placeholder="Highlight text in tweet content"
+      type="text"
+    />
+  </div>
+</div>
+`;
