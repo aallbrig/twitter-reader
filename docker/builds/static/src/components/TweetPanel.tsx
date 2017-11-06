@@ -1,14 +1,41 @@
 import * as React from 'react';
+import { curry } from 'lodash';
 import { Panel, Media, Row, Col, Badge } from 'react-bootstrap';
 import { FormattedNumber, FormattedDate, FormattedTime } from 'react-intl';
 import { FilterableTweet } from '../types';
 const Highlight = require('react-highlighter');
+const Approx = require('approximate-number');
 
 export interface Props {
     tweet: FilterableTweet;
     index: number;
     highlightedWord: string;
 }
+
+import { Popover, OverlayTrigger } from 'react-bootstrap';
+const tweetNumberTooltip = (twt: FilterableTweet) => (
+    <Popover id="tweet-number-tooltip">
+        {`Raw Input: ${twt.id}`}
+        <br />
+        {'Frmt Num: '}
+        <FormattedNumber value={twt.id} />
+        <br />
+        {`Apprx Val: ${Approx(twt.id)}`.split('t')[0]}
+        {' Trillion'}
+        <br />
+        {` ${Approx(twt.id, {
+            round: true,
+            decimal: false
+        })}`.split('t')[0].split(',')[0]}
+        {' Quadrillion'}
+        <br />
+        {` ${Approx(twt.id, {
+            round: true,
+            decimal: false
+        })}`.split('t')[0].split(',')[0]}
+        {' Million Billion'}
+    </Popover>
+);
 
 export const TweetPanel: React.SFC<Props> = ({ tweet, index, highlightedWord }) => (
     <Panel
@@ -52,7 +79,19 @@ export const TweetPanel: React.SFC<Props> = ({ tweet, index, highlightedWord }) 
                 <FormattedNumber value={tweet.user.friends_count} />
             </Col>
             <Col xs={7} style={{ wordWrap: 'break-word' }}>
-                <h4>Tweet ID: {tweet.id}</h4>
+                <h4>
+                    {'Tweet ID '}
+                    <OverlayTrigger
+                        placement="bottom"
+                        overlay={curry(tweetNumberTooltip)(tweet)}
+                        trigger={['click', 'hover', 'focus']}
+                        delayHide={4000}
+                    >
+                        <span className="text-info">
+                            {tweet.id.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                        </span>
+                    </OverlayTrigger>
+                </h4>
                 <div className="text-muted" style={{ marginBottom: 10 }}>
                     <FormattedTime value={tweet.created_at} />
                     {' '}

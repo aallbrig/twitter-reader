@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { curry } from 'lodash';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Popover, OverlayTrigger } from 'react-bootstrap';
 import { IntlProvider } from 'react-intl';
 import './App.css';
 import TweetPanel from './TweetPanel';
@@ -20,22 +20,55 @@ export interface Props {
   filterTweets: (tweets: Tweet[], filterBy: string) => void;
 }
 
-class App extends React.Component<Props, {}> {
+export interface State {
+  shake: boolean;
+}
+
+class App extends React.Component<Props, State> {
+  state = {
+    shake: true
+  };
   componentWillMount() {
     const {getRecentTweets} = this.props;
     getRecentTweets();
-    setInterval(getRecentTweets, 60 * 1000);
+    setTimeout(() => this.setState({ shake: false }), 800);
+    setInterval(
+      () => {
+        this.setState(
+          () => ({
+            shake: true
+          }),
+          () => {
+            getRecentTweets();
+            setTimeout(() => this.setState({ shake: false }), 800);
+          }
+        );
+      },
+      10 * 1000
+    );
   }
   render() {
     const {
       highlightedWord, tweets, rawTweets,
       filterTweets, showModal, dismissModal
     } = this.props;
+    const { shake } = this.state;
     return (
       <IntlProvider locale="en">
         <div className="App">
           <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+            <OverlayTrigger
+              placement="right"
+              overlay={(
+                <Popover id="logo-tooltip">
+                  Every time this shakes, a new request is sent.
+                </Popover>
+              )}
+              trigger={['click', 'hover', 'focus']}
+              delayHide={2000}
+            >
+              <img src={logo} className={`App-logo${shake ? ' shake-chunk shake-freeze' : ''}`} alt="logo" />
+            </OverlayTrigger>
             <h1 className="h4" style={{marginTop: 16}}>Recent Tweets from @Salesforce</h1>
           </div>
           <Grid>

@@ -45,10 +45,14 @@ export const InformationModal: React.SFC<Props> = ({
                     </Col>
                     <Col xs={12} sm={5} smOffset={1}>
                     <Media.Left>
-                        <img src={logo} className="App-logo" alt="logo" style={{ width: 75, height: 'auto' }} />
+                        <div style={{ marginTop: 20 }}>
+                            <img src={logo} className="App-logo" alt="logo" style={{ width: 75, height: 'auto' }} />
+                        </div>
                     </Media.Left>
                     <Media.Body>
-                        Note: Recent tweets are pulled every time this logo rotates all the way around!
+                        {'Note: Recent tweets are pulled every time this logo '}
+                        {'rotates all the way around.  Open up your network tab '}
+                        to catch the request!
                     </Media.Body>
                 </Col>
             </Row>

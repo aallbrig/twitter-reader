@@ -29,6 +29,7 @@ export const FilterTweetInput: React.SFC<Props> = ({ onKeyDown }) => (
                 placement="left"
                 overlay={filterTweetsTooltip}
                 trigger={['click', 'hover', 'focus']}
+                delayHide={4000}
             >
                 <Badge>?</Badge>
             </OverlayTrigger>
