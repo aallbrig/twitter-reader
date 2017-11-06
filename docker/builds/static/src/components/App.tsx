@@ -58,7 +58,7 @@ class App extends React.Component<Props, State> {
         <div className="App">
           <div className="App-header">
             <OverlayTrigger
-              placement="right"
+              placement="bottom"
               overlay={(
                 <Popover id="logo-tooltip">
                   Every time this shakes, a new "get recent tweets from target user" request is sent.
@@ -76,12 +76,12 @@ class App extends React.Component<Props, State> {
               <Col xs={12}>
                 <FilterTweetInput onKeyDown={curry(filterTweets)(rawTweets)}/>
                 <OverlayTrigger
-                  placement="right"
+                  placement="bottom"
                   overlay={(
                     <Popover id="logo-tooltip">
-                      {`The backing REST server's HTTP cache clears after approximately `}
-                      {'one minute.  Cache is used to reduce server draw on external Twitter'}
-                      {' API, no matter how many clients are being served.'}
+                      {`REST web server's HTTP cache clears after approximately `}
+                      {'one minute.  HTTP cache is used here to reduce my application\'s use '}
+                      {'of Twitter\'s API.'}
                     </Popover>
                   )}
                   trigger={['click', 'hover', 'focus']}
@@ -97,7 +97,7 @@ class App extends React.Component<Props, State> {
                   placement="right"
                   overlay={(
                     <Popover id="logo-tooltip">
-                      {'Intended to be used for comparisons between timers.'}
+                      {'For comparison.'}
                     </Popover>
                   )}
                   trigger={['click', 'hover', 'focus']}
